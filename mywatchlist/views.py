@@ -14,7 +14,7 @@ def show_watchlist_index(request):
             watched_count += 1
         else:
             unwathched_count += 1
-    if watched_count > unwathched_count:
+    if watched_count >= unwathched_count:
         res = True
     
     context = {
