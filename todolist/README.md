@@ -19,3 +19,4 @@ Ketika form telah diisi dan tombol submit diklik oleh user, data akan dikirim da
 4. Membuat fungsi untuk login, logout, register pada `views.py` lalu membuat halaman html untuk login dan register.
 5. Membuat fungsi untuk show_todolist, add_task, delete_task, dan update_task pada `views.py` lalu membuat halaman html untuk halaman utama todolist dan halaman untuk membuat task baru.
 6. Routing path ke _page-page_ yang bersesuaian pada `todolist/urls.py`.
+7. Push kode ke repositori dan deploy ke heroku. Lalu membuat 2 user dan membuat 3 dummy data task pada masing-masing user.
