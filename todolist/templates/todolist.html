@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+<title>Todolist</title>
+<style>
+table, th, td {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+.task-container {
+    background: #373951;
+    border-radius: 24px;
+    padding: 32px;
+    gap: 20px;
+}
+</style>
+{% endblock meta %}
+
 {% block content %}
-<h5>Nama: </h5>
+{% comment %} <h5>Nama: </h5>
 <b>{{user}}</b>
 
 <table>
@@ -12,7 +30,6 @@
     <th>Status</th>
     <th>Ubah Status</th>
     </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
     {% for task in data_tasks %}
         <tr>
             <th>{{task.date}}</th>
@@ -32,5 +49,43 @@
 </table>
 <button><a href="{% url 'todolist:add_task' %}">Tambah Task</a></button>
 <br>
-<button><a href="{% url 'todolist:logout_user' %}">Logout</a></button>
+<button><a href="{% url 'todolist:logout_user' %}">Logout</a></button> {% endcomment %}
+<h5 class="text-5xl px-32 mt-8">Nama: </h5>
+    <b class="text-5xl px-32">{{user}}</b>
+
+<div class="container mt-8 gap-y-1 px-32">
+	{% for task in data_tasks %}
+	<div class="task-container mt-5">
+		<div style="display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
+			<div class="task-title">
+                <button><a class="inline-flex space-x-2 items-center justify-end px-6 py-3 bg-gradient-to-br from-red-400 to-orange-600 rounded-xl" href="{% url 'todolist:delete_task' task.id %}">Hapus</a></button>
+            <button><a class="inline-flex space-x-2 items-center justify-end px-6 py-3 bg-gradient-to-br from-green-400 to-indigo-600 rounded-xl" href="{% url 'todolist:update_task' task.id %}">Ubah</a></button>
+				<div class="text-2xl font-bold mt-4" >{{ task.title }}</div>
+				{% comment %} <a
+					class="inline-flex space-x-2 items-center justify-center px-6 py-3 bg-gradient-to-br from-green-400 to-indigo-600 rounded-xl"
+					style="font-weight: bold"
+					href="{% url 'todolist:delete_task' task.id %}"
+					>Delete</a
+				> {% endcomment %}
+				{% if task.is_finished %}
+                <p class="flex justify-end text-green-400 text-bold text-xl"> Finished </p>
+				{% endif %}
+			</a>
+            <div class="task-checkbox-container">
+		</div>
+			</div>
+			<div class="task-description">
+				<hr />
+				<pre>{{ task.description }}</pre>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+    <a class="mt-4 inline-flex space-x-2 items-center justify-center px-6 py-3 bg-gradient-to-br from-green-400 to-indigo-600 rounded-xl" href="{% url 'todolist:add_task' %}">
+		<div style="display: flex; align-items: center; gap: 12px">
+			<div>Tambah task</div>
+		</div>
+	</a>
+    <a class="inline-flex space-x-2 items-center justify-center px-6 py-3 bg-gradient-to-br from-red-400 to-orange-600 rounded-xl" href="{% url 'todolist:logout_user' %}">Logout</a></button>
+</div>
 {% endblock content %}

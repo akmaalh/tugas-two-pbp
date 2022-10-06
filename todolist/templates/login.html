@@ -6,40 +6,81 @@
 
 {% block content %}
 
-<div class = "login">
+{% comment %} <div class = "login">
 
-    <h1>Login</h1>
+    <h1 class="font-bold text-5xl text-zinc-100 text-center mt-5">Login</h1>
 
     <form method="POST" action="">
         {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+        <div class="flex justify-center mt-5">
+            <table>
+                <tr>
+                    <td style="padding:8px" class="font-semibold text-m text-zinc-100">Username: </td>
+                    <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+                </tr>
+                        
+                <tr>
+                    <td class="font-semibold text-m text-zinc-100">Password: </td>
+                    <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+                </tr>
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
+                <tr>
+                    <td></td>
+                    <td><input class="rounded-md bg-gradient-to-br from-[#1AD1DA] to-[#4A5ACD] hover:outline outline-2 hover:cursor-pointer active:opacity-50 w-full h-10 text-slate-100 mt-4 font-semibold" type="submit" value="Login"></td>
+                </tr>
+            </table>
+        </div>
     </form>
 
     {% if messages %}
-        <ul>
+        <ul class="flex justify-center font-regular text-red-500 text-sm mt-2">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
     {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'todolist:register_user' %}">Buat Akun</a>
+     
+    <h4 class="text-zinc-200 flex justify-center">Belum mempunyai akun?</h4> <a class="text-blue-300 flex justify-center" href="{% url 'todolist:register_user' %}"><u>Buat Akun</u></a>
 
-</div>
-
+</div> {% endcomment %}
+<div>
+    <div class="flex justify-center mt-16">
+        <div class="inline-flex flex-col space-y-5 items-center justify-start p-8 bg-black bg-opacity-10 border-2 rounded-3xl border-white border-opacity-80" style="width: 456px; height: 396px;">
+            <h1 class="text-5xl font-bold leading-10 text-white">Login</h1>
+            <form method="POST" action=" " class="flex flex-col space-y-4 items-center justify-start" style="width: 392px; height: 216px;">
+                {% csrf_token %}
+                <div class="flex flex-col space-y-1 items-start justify-start" style="width: 392px; height: 68px;">
+                    <label class="text-base font-semibold leading-normal text-white" style="width: 392px;">Username</label>
+                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500" style="width: 392px; height: 40px;" type="text" name="username" placeholder="Username" >
+                        <div class="flex items-start justify-start px-4 py-2" style="width: 392px; height: 40px;">
+                        </form>
+                    </div>
+                </form>
+                <div class="flex flex-col space-y-1 items-start justify-start" style="width: 392px; height: 68px;">
+                    <p class="text-base font-semibold leading-normal text-white" style="width: 392px;">Password</p>
+                    <input class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500" style="width: 392px; height: 40px;" type="password" name="password" placeholder="Password" >
+                        <div class="flex items-start justify-start px-4 py-2" style="width: 392px; height: 40px;">
+                        </div>
+                    </input>
+                </div>
+                {% if messages %}
+             {% for message in messages %} 
+             {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+            <p class="mt-2 text-red-500 text-sm">
+              {{message}}
+            </p>
+            {% else %}
+            <p class="mt-2 text-green-400 text-sm">
+              {{message}}
+            </p>
+            {% endif %} 
+            {% endfor %}
+             {% endif %}
+                <button class="inline-flex space-x-2 items-center justify-center px-6 py-3 bg-gradient-to-br from-green-400 to-indigo-600 rounded-xl" style="width: 392px; height: 48px;">
+                    <p class="text-base font-semibold leading-normal text-white">Login</p>
+                </button>
+            </div>
+        </div>
+    </div>
+    <h4 class=" flex-auto text-zinc-200 flex justify-center mt-4">Belum mempunyai akun?</h4> <a class="text-blue-300 flex justify-center" href="{% url 'todolist:register_user' %}"><u>Buat Akun</u></a>
 {% endblock content %}
